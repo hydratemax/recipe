@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faisal Collection – Recipes by KA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf8f0;
+    --warm-white: #fffdf9;
+    --gold: #c8933a;
+    --gold-light: #e8b96a;
+    --gold-pale: #f5e8c8;
+    --rust: #b84a2e;
+    --deep: #1a1208;
+    --text: #2d1f0e;
+    --muted: #7a6448;
+    --card-bg: #fffef9;
+    --border: rgba(200,147,58,0.2);
+    --section-ayam: #fff5e6;
+    --section-ikan: #e8f4f0;
+    --section-daging: #f5e8e8;
+    --section-lain: #ede8f5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ===== CURSOR ===== */
+  body { cursor: none; }
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transition: transform 0.15s ease;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transition: transform 0.4s ease, width 0.3s, height 0.3s, opacity 0.3s;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem;
+    height: 72px;
+    background: rgba(253,248,240,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px rgba(200,147,58,0.12); }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--deep);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .chef-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--rust));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    position: relative;
+    box-shadow: 0 0 0 3px var(--gold-pale), 0 0 0 5px var(--gold-light);
+    animation: pulseRing 3s ease-in-out infinite;
+  }
+  @keyframes pulseRing {
+    0%, 100% { box-shadow: 0 0 0 3px var(--gold-pale), 0 0 0 5px rgba(200,147,58,0.2); }
+    50% { box-shadow: 0 0 0 5px var(--gold-pale), 0 0 0 9px rgba(200,147,58,0.1); }
+  }
+  .brand-text { text-align: right; }
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--deep);
+    line-height: 1.1;
+  }
+  .brand-sub {
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 100%;
+    height: 1.5px;
+    background: var(--gold);
+    transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { right: 0; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 2rem 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 40%, rgba(200,147,58,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,74,46,0.05) 0%, transparent 60%),
+      var(--cream);
+  }
+
+  .hero-decoration {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .hero-line {
+    position: absolute;
+    border: 1px solid rgba(200,147,58,0.12);
+    border-radius: 50%;
+    animation: rotateRing linear infinite;
+  }
+  .hero-line:nth-child(1) { width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 40s; }
+  .hero-line:nth-child(2) { width: 800px; height: 800px; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(30deg); animation-duration: 60s; animation-direction: reverse; }
+  .hero-line:nth-child(3) { width: 1000px; height: 1000px; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(60deg); animation-duration: 80s; }
+  @keyframes rotateRing { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--deep);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+    position: relative; z-index: 1;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+  .hero-divider {
+    display: flex; align-items: center; gap: 1rem;
+    margin: 2rem 0;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+  .hero-divider::before, .hero-divider::after {
+    content: '';
+    flex: 1; max-width: 80px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .hero-divider span {
+    font-size: 1.4rem;
+  }
+  .hero-stats {
+    display: flex; gap: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 1.4s forwards;
+  }
+  .scroll-hint span {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .scroll-arrow {
+    width: 1px; height: 40px;
+    background: var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-arrow::after {
+    content: '';
+    position: absolute; top: -100%; left: 0;
+    width: 100%; height: 100%;
+    background: var(--cream);
+    animation: scrollDown 1.8s 1.5s ease-in-out infinite;
+  }
+  @keyframes scrollDown {
+    0% { top: -100%; }
+    100% { top: 100%; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== FILTER TABS ===== */
+  .filter-bar {
+    position: sticky; top: 72px; z-index: 50;
+    background: rgba(253,248,240,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 3rem;
+    display: flex; gap: 0; align-items: center;
+    overflow-x: auto;
+  }
+  .filter-tab {
+    padding: 1rem 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.3s;
+  }
+  .filter-tab::after {
+    content: '';
+    position: absolute; bottom: 0; left: 1.5rem; right: 1.5rem;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .filter-tab.active { color: var(--gold); }
+  .filter-tab.active::after { transform: scaleX(1); }
+  .filter-tab:hover { color: var(--deep); }
+
+  /* ===== SECTIONS ===== */
+  .section-wrapper { padding: 5rem 3rem; }
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .section-header.visible { opacity: 1; transform: translateY(0); }
+  .section-badge {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .section-title-group { flex: 1; }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--deep);
+    line-height: 1.1;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(200,147,58,0.12);
+    line-height: 1;
+    flex-shrink: 0;
+    user-select: none;
+  }
+  .section-line {
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 3rem;
+    opacity: 0.4;
+  }
+
+  /* ===== RECIPE GRID ===== */
+  .recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.8rem;
+  }
+
+  /* ===== RECIPE CARD ===== */
+  .recipe-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(40px);
+    position: relative;
+  }
+  .recipe-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .recipe-card:hover {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 24px 60px rgba(26,18,8,0.15), 0 8px 20px rgba(200,147,58,0.1);
+  }
+  .recipe-card:hover .card-img img {
+    transform: scale(1.08);
+  }
+  .recipe-card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  .card-img {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+  }
+  .card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    display: block;
+  }
+  .card-img .img-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--gold-pale), #f0e0b8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+  }
+  .card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,18,8,0.7) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex; align-items: flex-end; padding: 1rem;
+  }
+  .card-overlay-btn {
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+  .card-overlay-btn:hover { background: var(--rust); }
+
+  .card-tag {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(255,253,249,0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .card-body { padding: 1.2rem 1.4rem 1.4rem; }
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--deep);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+  .card-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 0.9rem;
+  }
+  .card-by {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .card-by strong { color: var(--gold); }
+  .card-link {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold-light);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: background 0.2s, transform 0.2s;
+    color: var(--gold);
+  }
+  .card-link:hover {
+    background: var(--gold);
+    color: white;
+    transform: rotate(15deg);
+  }
+
+  /* ===== SECTION COLORS ===== */
+  .sec-ayam { background: linear-gradient(180deg, var(--cream) 0%, #fff8ec 100%); }
+  .sec-ikan { background: linear-gradient(180deg, #fff8ec 0%, #eef7f3 100%); }
+  .sec-daging { background: linear-gradient(180deg, #eef7f3 0%, #f9eee8 100%); }
+  .sec-lain { background: linear-gradient(180deg, #f9eee8 0%, var(--cream) 100%); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 3rem;
+  }
+  footer .f-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  footer .f-logo em { font-style: italic; }
+  footer p { font-size: 0.8rem; margin-top: 0.5rem; }
+  footer a { color: var(--gold-light); text-decoration: none; }
+
+  /* ===== HIDDEN SECTION SUPPORT ===== */
+  .section-wrapper.hidden { display: none; }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .section-wrapper { padding: 3rem 1.2rem; }
+    .filter-bar { padding: 0 1rem; }
+    .recipe-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .card-img { height: 160px; }
+    .hero-stats { gap: 2rem; }
+    .hero-line { display: none; }
+  }
+  @media (max-width: 480px) {
+    .recipe-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">Faisal <span>Collection</span></div>
+  <ul class="nav-links">
+    <li><a href="#ayam">Chicken</a></li>
+    <li><a href="#ikan">Fish</a></li>
+    <li><a href="#daging">Beef</a></li>
+    <li><a href="#lain">Others</a></li>
+  </ul>
+  <div class="nav-brand">
+    <div class="brand-text">
+      <div class="brand-name">Faisal Collection</div>
+      <div class="brand-sub">Recipes by KA</div>
+    </div>
+    <div class="chef-avatar">👨‍🍳</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-decoration">
+    <div class="hero-line"></div>
+    <div class="hero-line"></div>
+    <div class="hero-line"></div>
+  </div>
+  <p class="hero-eyebrow">✦ Curated Malaysian Kitchen ✦</p>
+  <h1 class="hero-title">
+    Recipes by
+    <em>Khairul Aming</em>
+  </h1>
+  <p class="hero-sub">A personal collection of bold, flavourful recipes — crafted with heart.</p>
+  <div class="hero-divider"><span>🍴</span></div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">28</span>
+      <span class="stat-label">Recipes</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Categories</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1</span>
+      <span class="stat-label">Chef</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" id="filterBar">
+  <button class="filter-tab active" data-section="all">All Recipes</button>
+  <button class="filter-tab" data-section="ayam">🐔 Chicken</button>
+  <button class="filter-tab" data-section="ikan">🐟 Fish & Seafood</button>
+  <button class="filter-tab" data-section="daging">🥩 Beef</button>
+  <button class="filter-tab" data-section="lain">🍩 Others</button>
+</div>
+
+<!-- AYAM SECTION -->
+<section class="section-wrapper sec-ayam" id="ayam" data-section="ayam">
+  <div class="section-header">
+    <div class="section-badge">🐔</div>
+    <div class="section-title-group">
+      <div class="section-label">Category One</div>
+      <h2 class="section-title">Chicken <em>Dishes</em></h2>
+    </div>
+    <div class="section-count">14</div>
+  </div>
+  <div class="section-line"></div>
+  <div class="recipe-grid" id="grid-ayam">
+
+    <div class="recipe-card" data-delay="0">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1598515213692-f5e5a8c73f1c?w=600&q=80" alt="Ayam Goreng Crispy Thai" loading="lazy">
+        <div class="card-tag">Thai</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7609908058969591047" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Goreng Crispy Thai</div>
+        <div class="card-desc">Ultra-crunchy fried chicken with Thai herbs and a punchy dipping sauce.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7609908058969591047" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="1">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&q=80" alt="Ayam Sos Plum" loading="lazy">
+        <div class="card-tag">Sweet & Tangy</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7608083211482172679" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Sos Plum</div>
+        <div class="card-desc">Glazed chicken drenched in a sticky, sweet plum sauce — finger-licking good.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7608083211482172679" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="2">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&q=80" alt="Ayam Goreng Masak Lemak" loading="lazy">
+        <div class="card-tag">Creamy</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7484150259581488392" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Goreng Masak Lemak</div>
+        <div class="card-desc">Fried chicken simmered in a rich, golden coconut milk gravy with turmeric.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7484150259581488392" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="3">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=80" alt="Ayam Percik Kelantan" loading="lazy">
+        <div class="card-tag">Kelantan</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7483396624945843474" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Percik Kelantan</div>
+        <div class="card-desc">Authentic grilled chicken basted in a smoky, spiced coconut sauce from Kelantan.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7483396624945843474" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="4">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1614777735145-28d2d7a5e6e4?w=600&q=80" alt="Ayam Kantan" loading="lazy">
+        <div class="card-tag">Herby</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7481141489939123463" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Kantan</div>
+        <div class="card-desc">Fragrant torch ginger chicken cooked with aromatic Malay spices.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7481141489939123463" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="5">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Ayam Pandan" loading="lazy">
+        <div class="card-tag">Fragrant</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7480028472539221266" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Pandan</div>
+        <div class="card-desc">Tender chicken parcels wrapped in pandan leaves and fried to aromatic perfection.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7480028472539221266" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="6">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80" alt="Sup Ayam Siam" loading="lazy">
+        <div class="card-tag">Soup</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7478170848759696648" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Sup Ayam Siam</div>
+        <div class="card-desc">A bold, spiced Thai-style chicken soup brimming with lemongrass and galangal.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7478170848759696648" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="7">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80" alt="Ayam Kungpao" loading="lazy">
+        <div class="card-tag">Chinese</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7352010367502912784" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Kungpao</div>
+        <div class="card-desc">Spicy, savoury kung pao chicken tossed with peanuts and dried chilies.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7352010367502912784" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="8">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1606728035253-49e8a23146de?w=600&q=80" alt="Ayam Kicap Pedas" loading="lazy">
+        <div class="card-tag">Spicy</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7348669467229949186" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Kicap Pedas</div>
+        <div class="card-desc">Braised chicken in a fiery soy sauce gravy with bird's eye chilies.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7348669467229949186" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="9">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=600&q=80" alt="Ayam Salted Egg" loading="lazy">
+        <div class="card-tag">Trending</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7220288231689030917" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Salted Egg</div>
+        <div class="card-desc">Crispy chicken coated in a buttery, rich salted egg yolk sauce with curry leaves.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7220288231689030917" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="10">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&q=80" alt="Ayam Masak Bali" loading="lazy">
+        <div class="card-tag">Balinese</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7218054083532360966" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Masak Bali</div>
+        <div class="card-desc">Balinese-style chicken in a fragrant, deeply spiced sambal sauce.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7218054083532360966" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="11">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80" alt="Ayam Phat Pet Thai" loading="lazy">
+        <div class="card-tag">Thai</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7216196065475759387" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Phat Pet Thai</div>
+        <div class="card-desc">Thai stir-fried spicy chicken with red curry paste and fragrant kaffir lime.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7216196065475759387" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="12">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1624300629298-e9de39c13be5?w=600&q=80" alt="Ayam Masak Merah" loading="lazy">
+        <div class="card-tag">Classic</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7091157444738501915" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Masak Merah</div>
+        <div class="card-desc">Iconic Malaysian red-sauced chicken — a must-have at every kenduri.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7091157444738501915" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="13">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=600&q=80" alt="Ayam Bawang" loading="lazy">
+        <div class="card-tag">Simple</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7087055380399869210" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ayam Bawang</div>
+        <div class="card-desc">Caramelised onion chicken — deeply savoury, sweet, and irresistibly simple.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7087055380399869210" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="14">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600&q=80" alt="Nasi Tomato Ayam Merah" loading="lazy">
+        <div class="card-tag">Rice Dish</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7486337073192946952" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Nasi Tomato Ayam Merah</div>
+        <div class="card-desc">Fragrant tomato rice served alongside rich red chicken — a festive feast.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7486337073192946952" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- IKAN SECTION -->
+<section class="section-wrapper sec-ikan" id="ikan" data-section="ikan">
+  <div class="section-header">
+    <div class="section-badge">🐟</div>
+    <div class="section-title-group">
+      <div class="section-label">Category Two</div>
+      <h2 class="section-title">Fish & <em>Seafood</em></h2>
+    </div>
+    <div class="section-count">5</div>
+  </div>
+  <div class="section-line"></div>
+  <div class="recipe-grid" id="grid-ikan">
+
+    <div class="recipe-card" data-delay="0">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1534482421-64566f976cfa?w=600&q=80" alt="Tahu Gorang Crispy" loading="lazy">
+        <div class="card-tag">Crispy</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7613295772565507335" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Tahu Gorang Crispy</div>
+        <div class="card-desc">Shatteringly crispy fried tofu with a golden crust and soft silky centre.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7613295772565507335" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="1">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=600&q=80" alt="Sup Ikan" loading="lazy">
+        <div class="card-tag">Soup</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7612554976145001735" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Sup Ikan</div>
+        <div class="card-desc">Clear, comforting fish soup with a clean broth and aromatic ginger.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7612554976145001735" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="2">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=600&q=80" alt="Tenggiri Masak Cuka" loading="lazy">
+        <div class="card-tag">Tangy</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7610699789948308744" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Tenggiri Masak Cuka</div>
+        <div class="card-desc">Spanish mackerel cooked in a zingy, sour tamarind and vinegar sauce.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7610699789948308744" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="3">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80" alt="Ikan Sambal Sumbat" loading="lazy">
+        <div class="card-tag">Grilled</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7214339758053444891" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ikan Sambal Sumbat</div>
+        <div class="card-desc">Whole fish stuffed with vibrant sambal and grilled over an open flame.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7214339758053444891" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="4">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&q=80" alt="Ketam Cili Api" loading="lazy">
+        <div class="card-tag">Crab</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7217696442796756251" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Ketam Cili Api</div>
+        <div class="card-desc">Fiery bird's eye chili crab in a blazing, pungent sauce — not for the faint-hearted.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7217696442796756251" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DAGING SECTION -->
+<section class="section-wrapper sec-daging" id="daging" data-section="daging">
+  <div class="section-header">
+    <div class="section-badge">🥩</div>
+    <div class="section-title-group">
+      <div class="section-label">Category Three</div>
+      <h2 class="section-title">Beef <em>Dishes</em></h2>
+    </div>
+    <div class="section-count">4</div>
+  </div>
+  <div class="section-line"></div>
+  <div class="recipe-grid" id="grid-daging">
+
+    <div class="recipe-card" data-delay="0">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Daging Belengas" loading="lazy">
+        <div class="card-tag">Braised</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7516790452549438727" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Daging Belengas</div>
+        <div class="card-desc">Slow-cooked beef in a rich, dark soy-based sauce until fall-apart tender.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7516790452549438727" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="1">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Daging Kari" loading="lazy">
+        <div class="card-tag">Curry</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7117482640751480091" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Daging Kari</div>
+        <div class="card-desc">Hearty beef curry simmered low and slow in a deeply spiced coconut gravy.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7117482640751480091" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="2">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80" alt="Daging Harimau Menangis" loading="lazy">
+        <div class="card-tag">Thai Grill</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7215080151456042267" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Daging Harimau Menangis</div>
+        <div class="card-desc">Thai "Crying Tiger" beef — grilled steak served with a fierce nam jim jaew dip.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7215080151456042267" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="3">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=600&q=80" alt="Daging Blackpepper" loading="lazy">
+        <div class="card-tag">Stir Fry</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7068205108126829851" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Daging Blackpepper</div>
+        <div class="card-desc">Sizzling beef stir-fried with a bold, peppery sauce and caramelised onions.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7068205108126829851" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LAIN-LAIN SECTION -->
+<section class="section-wrapper sec-lain" id="lain" data-section="lain">
+  <div class="section-header">
+    <div class="section-badge">🍳</div>
+    <div class="section-title-group">
+      <div class="section-label">Category Four</div>
+      <h2 class="section-title">Eggs, Prawns <em>& More</em></h2>
+    </div>
+    <div class="section-count">5</div>
+  </div>
+  <div class="section-line"></div>
+  <div class="recipe-grid" id="grid-lain">
+
+    <div class="recipe-card" data-delay="0">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80" alt="Telor Dadar Masak Lemak" loading="lazy">
+        <div class="card-tag">Egg Dish</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7403178476150328593" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Telor Dadar Masak Lemak</div>
+        <div class="card-desc">Fluffy omelette cooked in a luscious, turmeric-laced coconut milk gravy.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7403178476150328593" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="1">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=600&q=80" alt="Cucur Udang Crispy" loading="lazy">
+        <div class="card-tag">Snack</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7352387572095569153" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Cucur Udang Crispy</div>
+        <div class="card-desc">Crispy prawn fritters with a light, lacy batter — perfect as a teatime snack.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7352387572095569153" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="2">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1612240498936-65f5101365d2?w=600&q=80" alt="Telor Dadar Padkrapao" loading="lazy">
+        <div class="card-tag">Thai</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7345069344189107458" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Telor Dadar Padkrapao</div>
+        <div class="card-desc">Thai basil omelette — crispy edges, fragrant holy basil, and a punch of chili.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7345069344189107458" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="3">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80" alt="Donut Susu Gebu" loading="lazy">
+        <div class="card-tag">Dessert</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7205803669307051291" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Donut Susu Gebu</div>
+        <div class="card-desc">Pillowy, milk-soft doughnuts — impossibly fluffy and dusted with fine sugar.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7205803669307051291" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" data-delay="4">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=600&q=80" alt="Tahu Gorang Crispy" loading="lazy">
+        <div class="card-tag">Tofu</div>
+        <div class="card-overlay">
+          <a href="https://www.tiktok.com/@khairulaming/video/7613295772565507335" target="_blank" class="card-overlay-btn">Watch Recipe ↗</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Tahu Gorang Crispy</div>
+        <div class="card-desc">Golden, extra-crispy tofu cubes with a crackling shell and soft interior.</div>
+        <div class="card-footer">
+          <span class="card-by">by <strong>KA</strong></span>
+          <a href="https://www.tiktok.com/@khairulaming/video/7613295772565507335" target="_blank" class="card-link">↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">Faisal <em>Collection</em></div>
+  <p>Recipes curated from <a href="https://www.tiktok.com/@khairulaming" target="_blank">@khairulaming</a> · All credit to Chef KA</p>
+  <p style="margin-top:0.8rem; font-size:0.7rem; opacity:0.4;">Made with ❤️ for food lovers everywhere</p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+  });
+  (function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(animRing);
+  })();
+  document.querySelectorAll('a,button,.recipe-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform += ' scale(1.8)';
+      ring.style.width = '56px'; ring.style.height = '56px';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '36px'; ring.style.height = '36px';
+    });
+  });
+
+  // Navbar scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Intersection Observer for scroll-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.section-header').forEach(el => observer.observe(el));
+
+  // Staggered card animation
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.getAttribute('data-delay') || 0);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, delay * 80);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.recipe-card').forEach(card => cardObserver.observe(card));
+
+  // Filter tabs
+  const tabs = document.querySelectorAll('.filter-tab');
+  const sections = document.querySelectorAll('.section-wrapper[data-section]');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const target = tab.getAttribute('data-section');
+
+      sections.forEach(sec => {
+        if (target === 'all' || sec.getAttribute('data-section') === target) {
+          sec.style.display = '';
+          sec.classList.remove('hidden');
+        } else {
+          sec.classList.add('hidden');
+          sec.style.display = 'none';
+        }
+      });
+
+      if (target !== 'all') {
+        const targetSec = document.getElementById(target);
+        if (targetSec) {
+          setTimeout(() => targetSec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>
