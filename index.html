@@ -38,19 +38,16 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  /* ── SCROLLBAR ── */
   ::-webkit-scrollbar{width:4px;}
   ::-webkit-scrollbar-track{background:var(--bg);}
   ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
 
-  /* ── NOISE OVERLAY ── */
   body::before{
     content:'';position:fixed;inset:0;
     background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events:none;z-index:9999;opacity:0.4;
   }
 
-  /* ── AMBIENT GLOW BLOBS ── */
   .ambient{position:fixed;pointer-events:none;z-index:0;border-radius:50%;filter:blur(80px);animation:blobFloat 12s ease-in-out infinite;}
   .ambient-1{width:500px;height:500px;background:rgba(201,148,59,0.06);top:-100px;left:-100px;animation-delay:0s;}
   .ambient-2{width:400px;height:400px;background:rgba(160,58,32,0.04);bottom:-100px;right:-100px;animation-delay:-6s;}
@@ -61,7 +58,6 @@
     66%{transform:translate(-20px,15px) scale(0.98);}
   }
 
-  /* ── NAV ── */
   nav{
     position:fixed;top:0;left:0;right:0;z-index:200;
     display:flex;align-items:center;justify-content:space-between;
@@ -114,7 +110,6 @@
     .nav-links a:hover::after{right:0;}
   }
 
-  /* ── HERO ── */
   .hero{
     min-height:100svh;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -203,7 +198,6 @@
     font-family:'Playfair Display',serif;
     font-size:1.8rem;font-weight:700;
     color:var(--gold);display:block;
-    animation:countUp 1.5s 1.5s ease-out both;
   }
   .stat-label{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3);}
 
@@ -225,7 +219,6 @@
     to{opacity:1;transform:translateY(0);}
   }
 
-  /* ── FILTER BAR ── */
   .filter-bar{
     position:sticky;top:64px;z-index:100;
     background:rgba(15,13,10,0.9);
@@ -255,7 +248,6 @@
   .filter-tab.active::after{transform:scaleX(1);}
   .filter-tab:hover{color:var(--text2);}
 
-  /* ── SECTION ── */
   .sec-wrap{padding:4rem 1.2rem;}
   @media(min-width:600px){.sec-wrap{padding:5rem 2rem;}}
 
@@ -287,7 +279,6 @@
     margin-bottom:2rem;opacity:0.5;
   }
 
-  /* ── GRID ── */
   .recipe-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -296,7 +287,6 @@
   @media(min-width:600px){.recipe-grid{grid-template-columns:repeat(3,1fr);gap:1.2rem;}}
   @media(min-width:900px){.recipe-grid{grid-template-columns:repeat(4,1fr);gap:1.4rem;}}
 
-  /* ── CARD ── */
   .card{
     background:var(--card);
     border:1px solid var(--border2);
@@ -407,16 +397,13 @@
   }
   .card-arrow:hover{background:var(--gold);color:var(--bg);transform:rotate(15deg);border-color:var(--gold);}
 
-  /* ── SECTION BG VARIANTS ── */
   .sec-ayam{background:linear-gradient(180deg,var(--bg) 0%,#13100a 100%);}
   .sec-ikan{background:linear-gradient(180deg,#13100a 0%,#0e1210 100%);}
   .sec-daging{background:linear-gradient(180deg,#0e1210 0%,#130e0c 100%);}
   .sec-lain{background:linear-gradient(180deg,#130e0c 0%,var(--bg) 100%);}
 
-  /* ── HIDDEN ── */
   .sec-wrap.hidden{display:none;}
 
-  /* ── FOOTER ── */
   footer{
     background:var(--bg2);
     border-top:1px solid var(--border2);
@@ -451,7 +438,6 @@
 <div class="ambient ambient-2"></div>
 <div class="ambient ambient-3"></div>
 
-<!-- NAV -->
 <nav id="nav">
   <div class="nav-logo">Faisal <span>Collection</span></div>
   <ul class="nav-links">
@@ -469,7 +455,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-rings">
     <div class="ring"></div>
@@ -505,7 +490,6 @@
   </div>
 </section>
 
-<!-- FILTER BAR -->
 <div class="filter-bar" id="filterBar">
   <button class="filter-tab active" data-s="all">All Recipes</button>
   <button class="filter-tab" data-s="ayam">🐔 Chicken</button>
@@ -514,9 +498,7 @@
   <button class="filter-tab" data-s="lain">🍳 Others</button>
 </div>
 
-<!-- ═══════════════════════════════
-     AYAM SECTION
-═══════════════════════════════ -->
+<!-- ═══ AYAM ═══ -->
 <section class="sec-wrap sec-ayam" id="ayam" data-s="ayam">
   <div class="sec-header">
     <span class="sec-emoji">🐔</span>
@@ -531,7 +513,7 @@
 
     <div class="card" data-d="0">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/malaysian%20ayam%20goreng%20crispy%20thai%20fried%20chicken%20golden%20brown%20thai%20herbs%20dipping%20sauce%20dark%20moody%20cinematic%20food%20photography%204k" alt="Ayam Goreng Crispy Thai"
+        <img src="https://image.pollinations.ai/prompt/crispy+thai+fried+chicken+golden+brown+herbs?width=400&height=300&nologo=true" alt="Ayam Goreng Crispy Thai" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🐔</span><span>Ayam Goreng Crispy Thai</span></div>'">
         <span class="card-badge">Thai</span>
         <div class="card-shimmer"></div>
@@ -551,7 +533,7 @@
 
     <div class="card" data-d="1">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/malaysian%20ayam%20sos%20plum%20glazed%20sticky%20sweet%20plum%20sauce%20chicken%20dark%20moody%20cinematic%20food%20photography%204k" alt="Ayam Sos Plum"
+        <img src="https://image.pollinations.ai/prompt/sticky+plum+sauce+glazed+chicken+asian+food?width=400&height=300&nologo=true" alt="Ayam Sos Plum" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Sos Plum</span></div>'">
         <span class="card-badge">Sweet & Tangy</span>
         <div class="card-shimmer"></div>
@@ -571,7 +553,7 @@
 
     <div class="card" data-d="2">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/malaysian%20ayam%20goreng%20masak%20lemak%20fried%20chicken%20golden%20coconut%20milk%20turmeric%20gravy%20rich%20creamy%20dark%20cinematic%20food%20photography%204k" alt="Ayam Goreng Masak Lemak"
+        <img src="https://image.pollinations.ai/prompt/fried+chicken+coconut+milk+turmeric+gravy+malaysian?width=400&height=300&nologo=true" alt="Ayam Goreng Masak Lemak" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Goreng Masak Lemak</span></div>'">
         <span class="card-badge">Creamy</span>
         <div class="card-shimmer"></div>
@@ -591,7 +573,7 @@
 
     <div class="card" data-d="3">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/malaysian%20ayam%20percik%20kelantan%20grilled%20chicken%20smoky%20spiced%20coconut%20sauce%20charred%20dark%20moody%20cinematic%20food%20photography%204k" alt="Ayam Percik Kelantan"
+        <img src="https://image.pollinations.ai/prompt/grilled+chicken+spiced+coconut+sauce+charred+bbq?width=400&height=300&nologo=true" alt="Ayam Percik Kelantan" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Percik Kelantan</span></div>'">
         <span class="card-badge">Kelantan</span>
         <div class="card-shimmer"></div>
@@ -611,7 +593,7 @@
 
     <div class="card" data-d="4">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/malaysian%20ayam%20kantan%20torch%20ginger%20chicken%20fragrant%20aromatic%20malay%20spices%20dark%20moody%20cinematic%20food%20photography%204k" alt="Ayam Kantan"
+        <img src="https://image.pollinations.ai/prompt/torch+ginger+chicken+malay+aromatic+spices?width=400&height=300&nologo=true" alt="Ayam Kantan" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Kantan</span></div>'">
         <span class="card-badge">Herby</span>
         <div class="card-shimmer"></div>
@@ -631,7 +613,7 @@
 
     <div class="card" data-d="5">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/malaysian%20ayam%20pandan%20fried%20chicken%20wrapped%20in%20pandan%20leaves%20aromatic%20dark%20moody%20cinematic%20food%20photography%204k" alt="Ayam Pandan"
+        <img src="https://image.pollinations.ai/prompt/pandan+leaf+wrapped+fried+chicken+fragrant?width=400&height=300&nologo=true" alt="Ayam Pandan" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Pandan</span></div>'">
         <span class="card-badge">Fragrant</span>
         <div class="card-shimmer"></div>
@@ -651,7 +633,7 @@
 
     <div class="card" data-d="6">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/thai%20style%20chicken%20soup%20sup%20ayam%20siam%20lemongrass%20galangal%20herbs%20steaming%20bowl%20cinematic%20food%20photography%204k" alt="Sup Ayam Siam"
+        <img src="https://image.pollinations.ai/prompt/thai+chicken+soup+lemongrass+galangal+steaming+bowl?width=400&height=300&nologo=true" alt="Sup Ayam Siam" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🥣</span><span>Sup Ayam Siam</span></div>'">
         <span class="card-badge">Soup</span>
         <div class="card-shimmer"></div>
@@ -671,7 +653,7 @@
 
     <div class="card" data-d="7">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/kung%20pao%20chicken%20malaysian%20style%20spicy%20soy%20glaze%20peanuts%20dried%20chili%20wok%20stir%20fry%20dark%20cinematic%20food%20photography%204k" alt="Ayam Kungpao"
+        <img src="https://image.pollinations.ai/prompt/kung+pao+chicken+peanuts+dried+chili+wok?width=400&height=300&nologo=true" alt="Ayam Kungpao" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Kungpao</span></div>'">
         <span class="card-badge">Chinese</span>
         <div class="card-shimmer"></div>
@@ -691,7 +673,7 @@
 
     <div class="card" data-d="8">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/spicy%20soy%20sauce%20chicken%20ayam%20kicap%20pedas%20glossy%20dark%20gravy%20bird%20eye%20chili%20malaysian%20food%20cinematic%204k" alt="Ayam Kicap Pedas"
+        <img src="https://image.pollinations.ai/prompt/soy+sauce+braised+chicken+spicy+dark+gravy?width=400&height=300&nologo=true" alt="Ayam Kicap Pedas" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Kicap Pedas</span></div>'">
         <span class="card-badge">Spicy</span>
         <div class="card-shimmer"></div>
@@ -711,7 +693,7 @@
 
     <div class="card" data-d="9">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/salted%20egg%20yolk%20chicken%20crispy%20golden%20creamy%20curry%20leaves%20rich%20malaysian%20street%20food%20cinematic%204k" alt="Ayam Salted Egg"
+        <img src="https://image.pollinations.ai/prompt/salted+egg+yolk+crispy+chicken+curry+leaves?width=400&height=300&nologo=true" alt="Ayam Salted Egg" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Salted Egg</span></div>'">
         <span class="card-badge">Trending</span>
         <div class="card-shimmer"></div>
@@ -731,7 +713,7 @@
 
     <div class="card" data-d="10">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/balinese%20spicy%20chicken%20ayam%20masak%20bali%20rich%20red%20sambal%20glaze%20herbs%20dark%20moody%20cinematic%20food%20photography%204k" alt="Ayam Masak Bali"
+        <img src="https://image.pollinations.ai/prompt/balinese+spiced+chicken+red+sambal+sauce?width=400&height=300&nologo=true" alt="Ayam Masak Bali" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Masak Bali</span></div>'">
         <span class="card-badge">Balinese</span>
         <div class="card-shimmer"></div>
@@ -751,7 +733,7 @@
 
     <div class="card" data-d="11">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/thai%20spicy%20stir%20fried%20chicken%20phat%20phet%20red%20curry%20paste%20kaffir%20lime%20wok%20flame%20cinematic%20food%20photography%204k" alt="Ayam Phat Pet Thai"
+        <img src="https://image.pollinations.ai/prompt/thai+spicy+stir+fry+chicken+red+curry+paste+wok?width=400&height=300&nologo=true" alt="Ayam Phat Pet Thai" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Phat Pet Thai</span></div>'">
         <span class="card-badge">Thai</span>
         <div class="card-shimmer"></div>
@@ -771,7 +753,7 @@
 
     <div class="card" data-d="12">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/malaysian%20ayam%20masak%20merah%20red%20spicy%20sauce%20kenduri%20style%20rich%20glossy%20gravy%20cinematic%20food%20photography%204k" alt="Ayam Masak Merah"
+        <img src="https://image.pollinations.ai/prompt/malaysian+red+sauce+chicken+masak+merah+glossy?width=400&height=300&nologo=true" alt="Ayam Masak Merah" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Masak Merah</span></div>'">
         <span class="card-badge">Classic</span>
         <div class="card-shimmer"></div>
@@ -791,7 +773,7 @@
 
     <div class="card" data-d="13">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/caramelized%20onion%20chicken%20ayam%20bawang%20sweet%20savory%20glaze%20dark%20moody%20malaysian%20food%20cinematic%204k" alt="Ayam Bawang"
+        <img src="https://image.pollinations.ai/prompt/caramelized+onion+chicken+sweet+savory+glaze?width=400&height=300&nologo=true" alt="Ayam Bawang" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍗</span><span>Ayam Bawang</span></div>'">
         <span class="card-badge">Simple</span>
         <div class="card-shimmer"></div>
@@ -811,7 +793,7 @@
 
     <div class="card" data-d="14">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/tomato%20rice%20with%20red%20chicken%20nasi%20tomato%20ayam%20merah%20festive%20malaysian%20dish%20cinematic%20food%20photography%204k" alt="Nasi Tomato Ayam Merah"
+        <img src="https://image.pollinations.ai/prompt/tomato+rice+red+chicken+festive+malaysian+dish?width=400&height=300&nologo=true" alt="Nasi Tomato Ayam Merah" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍚</span><span>Nasi Tomato Ayam Merah</span></div>'">
         <span class="card-badge">Rice Dish</span>
         <div class="card-shimmer"></div>
@@ -832,9 +814,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════
-     IKAN SECTION
-═══════════════════════════════ -->
+<!-- ═══ IKAN ═══ -->
 <section class="sec-wrap sec-ikan" id="ikan" data-s="ikan">
   <div class="sec-header">
     <span class="sec-emoji">🐟</span>
@@ -849,7 +829,7 @@
 
     <div class="card" data-d="0">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20clear%20fish%20soup%20sup%20ikan%20ginger%20aromatic%20herbs%20steam%20rising%20dark%20moody%20cinematic%204k" alt="Sup Ikan"
+        <img src="https://image.pollinations.ai/prompt/clear+fish+soup+ginger+herbs+steaming+bowl?width=400&height=300&nologo=true" alt="Sup Ikan" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🐟</span><span>Sup Ikan</span></div>'">
         <span class="card-badge">Soup</span>
         <div class="card-shimmer"></div>
@@ -869,7 +849,7 @@
 
     <div class="card" data-d="1">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20spanish%20mackerel%20tenggiri%20masak%20cuka%20sour%20vinegar%20tamarind%20glazed%20rich%20sauce%20dark%20moody%20cinematic%204k" alt="Tenggiri Masak Cuka"
+        <img src="https://image.pollinations.ai/prompt/spanish+mackerel+tamarind+vinegar+sauce+fish?width=400&height=300&nologo=true" alt="Tenggiri Masak Cuka" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🐟</span><span>Tenggiri Masak Cuka</span></div>'">
         <span class="card-badge">Tangy</span>
         <div class="card-shimmer"></div>
@@ -889,7 +869,7 @@
 
     <div class="card" data-d="2">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20crispy%20fried%20tofu%20tahu%20goreng%20golden%20crust%20soft%20center%20street%20food%20style%20dark%20moody%20cinematic%204k" alt="Tahu Gorang Crispy"
+        <img src="https://image.pollinations.ai/prompt/crispy+fried+tofu+golden+crust+street+food?width=400&height=300&nologo=true" alt="Tahu Gorang Crispy" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🟡</span><span>Tahu Gorang Crispy</span></div>'">
         <span class="card-badge">Crispy</span>
         <div class="card-shimmer"></div>
@@ -909,7 +889,7 @@
 
     <div class="card" data-d="3">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20whole%20grilled%20fish%20ikan%20sambal%20sumbat%20stuffed%20spicy%20sambal%20charred%20flames%20dark%20moody%20cinematic%204k" alt="Ikan Sambal Sumbat"
+        <img src="https://image.pollinations.ai/prompt/whole+grilled+fish+stuffed+sambal+charred+flames?width=400&height=300&nologo=true" alt="Ikan Sambal Sumbat" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🐟</span><span>Ikan Sambal Sumbat</span></div>'">
         <span class="card-badge">Grilled</span>
         <div class="card-shimmer"></div>
@@ -929,7 +909,7 @@
 
     <div class="card" data-d="4">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20spicy%20crab%20ketam%20cili%20api%20bird%20eye%20chili%20sauce%20fiery%20red%20glossy%20seafood%20dark%20moody%20cinematic%204k" alt="Ketam Cili Api"
+        <img src="https://image.pollinations.ai/prompt/spicy+crab+chili+sauce+fiery+red+seafood?width=400&height=300&nologo=true" alt="Ketam Cili Api" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🦀</span><span>Ketam Cili Api</span></div>'">
         <span class="card-badge">Crab</span>
         <div class="card-shimmer"></div>
@@ -950,9 +930,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════
-     DAGING SECTION
-═══════════════════════════════ -->
+<!-- ═══ DAGING ═══ -->
 <section class="sec-wrap sec-daging" id="daging" data-s="daging">
   <div class="sec-header">
     <span class="sec-emoji">🥩</span>
@@ -967,7 +945,7 @@
 
     <div class="card" data-d="0">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20daging%20belengas%20kelantan%20fried%20beef%20soy%20chili%20glazed%20vegetables%20rich%20sauce%20dark%20moody%20cinematic%204k" alt="Daging Belengas"
+        <img src="https://image.pollinations.ai/prompt/kelantan+fried+beef+soy+chili+glaze+vegetables?width=400&height=300&nologo=true" alt="Daging Belengas" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🥩</span><span>Daging Belengas</span></div>'">
         <span class="card-badge">Braised</span>
         <div class="card-shimmer"></div>
@@ -987,7 +965,7 @@
 
     <div class="card" data-d="1">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20daging%20kari%20beef%20curry%20thick%20coconut%20gravy%20rich%20spices%20steam%20dark%20moody%20cinematic%204k" alt="Daging Kari"
+        <img src="https://image.pollinations.ai/prompt/beef+curry+thick+coconut+gravy+rich+spices?width=400&height=300&nologo=true" alt="Daging Kari" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🥩</span><span>Daging Kari</span></div>'">
         <span class="card-badge">Curry</span>
         <div class="card-shimmer"></div>
@@ -1007,7 +985,7 @@
 
     <div class="card" data-d="2">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20thai%20grilled%20beef%20daging%20harimau%20menangis%20crying%20tiger%20steak%20spicy%20dipping%20sauce%20dark%20moody%20cinematic%204k" alt="Daging Harimau Menangis"
+        <img src="https://image.pollinations.ai/prompt/crying+tiger+grilled+beef+steak+spicy+dipping+sauce?width=400&height=300&nologo=true" alt="Daging Harimau Menangis" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🥩</span><span>Daging Harimau Menangis</span></div>'">
         <span class="card-badge">Thai Grill</span>
         <div class="card-shimmer"></div>
@@ -1027,7 +1005,7 @@
 
     <div class="card" data-d="3">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20daging%20blackpepper%20beef%20black%20pepper%20stir%20fry%20caramelized%20onions%20sizzling%20wok%20dark%20moody%20cinematic%204k" alt="Daging Blackpepper"
+        <img src="https://image.pollinations.ai/prompt/black+pepper+beef+stir+fry+sizzling+wok+onions?width=400&height=300&nologo=true" alt="Daging Blackpepper" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🥩</span><span>Daging Blackpepper</span></div>'">
         <span class="card-badge">Stir Fry</span>
         <div class="card-shimmer"></div>
@@ -1048,9 +1026,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════
-     LAIN-LAIN SECTION
-═══════════════════════════════ -->
+<!-- ═══ LAIN-LAIN ═══ -->
 <section class="sec-wrap sec-lain" id="lain" data-s="lain">
   <div class="sec-header">
     <span class="sec-emoji">🍳</span>
@@ -1065,7 +1041,7 @@
 
     <div class="card" data-d="0">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20telur%20dadar%20masak%20lemak%20omelette%20coconut%20milk%20turmeric%20gravy%20rich%20yellow%20sauce%20dark%20moody%20cinematic%204k" alt="Telor Dadar Masak Lemak"
+        <img src="https://image.pollinations.ai/prompt/omelette+coconut+milk+turmeric+yellow+gravy?width=400&height=300&nologo=true" alt="Telor Dadar Masak Lemak" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍳</span><span>Telor Dadar Masak Lemak</span></div>'">
         <span class="card-badge">Egg Dish</span>
         <div class="card-shimmer"></div>
@@ -1085,7 +1061,7 @@
 
     <div class="card" data-d="1">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20cucur%20udang%20crispy%20prawn%20fritters%20lace%20batter%20street%20snack%20golden%20texture%20dark%20moody%20cinematic%204k" alt="Cucur Udang Crispy"
+        <img src="https://image.pollinations.ai/prompt/crispy+prawn+fritters+lacy+batter+golden+snack?width=400&height=300&nologo=true" alt="Cucur Udang Crispy" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍤</span><span>Cucur Udang Crispy</span></div>'">
         <span class="card-badge">Snack</span>
         <div class="card-shimmer"></div>
@@ -1105,7 +1081,7 @@
 
     <div class="card" data-d="2">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20thai%20basil%20omelette%20telur%20dadar%20padkrapao%20crispy%20edges%20chilies%20aromatic%20herbs%20dark%20moody%20cinematic%204k" alt="Telor Dadar Padkrapao"
+        <img src="https://image.pollinations.ai/prompt/thai+basil+omelette+crispy+edges+chili+herbs?width=400&height=300&nologo=true" alt="Telor Dadar Padkrapao" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍳</span><span>Telor Dadar Padkrapao</span></div>'">
         <span class="card-badge">Thai</span>
         <div class="card-shimmer"></div>
@@ -1125,7 +1101,7 @@
 
     <div class="card" data-d="3">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20donut%20susu%20gebu%20fluffy%20milk%20donuts%20soft%20pillowy%20sugar%20dusted%20dessert%20dark%20moody%20cinematic%204k" alt="Donut Susu Gebu"
+        <img src="https://image.pollinations.ai/prompt/fluffy+milk+donuts+pillowy+sugar+dusted+dessert?width=400&height=300&nologo=true" alt="Donut Susu Gebu" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🍩</span><span>Donut Susu Gebu</span></div>'">
         <span class="card-badge">Dessert</span>
         <div class="card-shimmer"></div>
@@ -1145,7 +1121,7 @@
 
     <div class="card" data-d="4">
       <div class="card-thumb">
-        <img src="https://image.pollinations.ai/prompt/premium%20malaysian%20spanish%20mackerel%20tenggiri%20masak%20cuka%20sour%20vinegar%20tamarind%20glazed%20rich%20sauce%20dark%20moody%20cinematic%204k" alt="Tahu Gorang Crispy 2"
+        <img src="https://image.pollinations.ai/prompt/extra+crispy+fried+tofu+golden+crackling+shell?width=400&height=300&nologo=true" alt="Tahu Gorang Crispy" loading="lazy"
           onerror="this.parentNode.innerHTML='<div class=card-thumb-fallback><span>🟡</span><span>Tahu Gorang Crispy</span></div>'">
         <span class="card-badge">Tofu</span>
         <div class="card-shimmer"></div>
@@ -1166,7 +1142,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="f-logo">Faisal <em>Collection</em></div>
   <p>Recipes curated from <a href="https://www.tiktok.com/@khairulaming" target="_blank">@khairulaming</a> · All credit to Chef KA</p>
@@ -1174,7 +1149,6 @@
 </footer>
 
 <script>
-  /* ── PARTICLES ── */
   const pContainer = document.getElementById('particles');
   for(let i=0;i<20;i++){
     const p = document.createElement('div');
@@ -1183,11 +1157,9 @@
     pContainer.appendChild(p);
   }
 
-  /* ── NAV SCROLL ── */
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', ()=>nav.classList.toggle('scrolled',scrollY>50),{passive:true});
 
-  /* ── COUNTER ANIMATION ── */
   function animCount(el){
     const target = +el.dataset.target;
     const dur = 1500;
@@ -1211,7 +1183,6 @@
   const statsEl = document.querySelector('.hero-stats');
   if(statsEl)statsObs.observe(statsEl);
 
-  /* ── SCROLL IN ── */
   const io = new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});
   },{threshold:0.08});
@@ -1228,7 +1199,6 @@
   },{threshold:0.04});
   document.querySelectorAll('.card').forEach(c=>cardIO.observe(c));
 
-  /* ── FILTER ── */
   document.querySelectorAll('.filter-tab').forEach(tab=>{
     tab.addEventListener('click',()=>{
       document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
@@ -1246,7 +1216,6 @@
     });
   });
 
-  /* ── CARD TOUCH RIPPLE ── */
   document.querySelectorAll('.card').forEach(card=>{
     card.addEventListener('touchstart',()=>{
       card.style.transform='translateY(-4px) scale(1.005)';
